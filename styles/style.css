@@ -270,6 +270,11 @@ body.is-intro .nav-logo {
   transition: none;
 }
 
+/* Menu button: hidden on large screens (see Small screens) */
+.nav-toggle {
+  display: none;
+}
+
 /* ================= Hero ================= */
 
 .hero {
@@ -1215,41 +1220,182 @@ html {
 /* ================= Small screens ================= */
 
 @media (max-width: 760px) {
+  /* --- Nav: logo + menu button, links drop down below --- */
   .nav {
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 16px;
+    justify-content: space-between;
+    padding: 14px 16px;
+  }
+
+  .nav.is-open {
+    background-color: rgba(22, 22, 22, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
+    padding: 0 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    transition: opacity 0.9s ease 0.2s;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+
+  /* bars turn into an X when open */
+  .nav.is-open .nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .nav-toggle:focus-visible {
+    outline: 1px solid var(--fg);
+    outline-offset: 2px;
+  }
+
+  body.is-intro .nav-toggle {
+    opacity: 0;
   }
 
   .nav nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     margin-right: 0;
-    width: 100%;
-    min-width: 0;
-    justify-content: flex-start;
-    overflow-x: auto;
+    padding: 8px 16px 20px;
+    background-color: rgba(22, 22, 22, 0.96);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .nav.is-open nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
   .nav-links {
-    gap: 18px;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
   }
 
   .nav-links a {
-    font-size: 11px;
-    white-space: nowrap;
+    display: block;
+    padding: 14px 4px;
+    font-size: 13px;
+    border-radius: 0;
+    border-bottom: 1px solid #2a2a2a;
   }
 
+  /* the sliding underline is for the desktop row; the current link just turns white */
+  .nav-pill {
+    display: none;
+  }
+
+  /* --- Hero: scaled up so the photo and name fill a phone screen --- */
+  .hero {
+    min-height: 0;
+    padding: 40px 0 8px;
+  }
+
+  .hero-stage {
+    height: 66vw;
+  }
+
+  .hero-name {
+    top: 40vw;
+    font-size: 26vw;
+    -webkit-text-stroke: 1.5px var(--fg);
+  }
+
+  .hero-photo {
+    height: 60vw;
+  }
+
+  .strip {
+    height: max(7vw, 26px);
+  }
+
+  .strip-top    { top: 16.5vw; }
+  .strip-bottom { top: 60vw; }
+
+  .strip-track span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+  }
+
+  /* --- Sections: less vertical padding --- */
+  .works,
+  .stack,
+  .process,
+  .services {
+    padding-top: 72px;
+    padding-bottom: 80px;
+  }
+
+  /* Photo beside the heading, text and facts full width below.
+     .about-content steps out of the grid (display: contents) so its
+     heading, text and facts can be placed on their own */
   .about {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+    gap: 24px 16px;
     padding: 72px 16px;
   }
 
   .about-photo {
-    max-width: 420px;
-    aspect-ratio: 3 / 4; /* stacked: photo keeps its own shape */
+    aspect-ratio: 3 / 4; /* keeps its own shape */
+    align-self: center;
+  }
+
+  .about-content {
+    display: contents;
+  }
+
+  /* the reveal can't move a display: contents box, so its children
+     take the same values (--rv, --py, --dx, --sc are inherited) */
+  .about-content > * {
+    opacity: clamp(0, calc(var(--rv, 1) / 0.6), 1);
+    translate: calc(var(--dx, 0) * (1 - var(--rv, 1)) * 160px) var(--py, 0px);
+    scale: calc(1 - var(--sc, 0) * (1 - var(--rv, 1)) * 0.25);
+  }
+
+  .about-title {
+    align-self: center;
+    font-size: 5.6vw;
+    margin-bottom: 0;
+  }
+
+  .about-text,
+  .about-facts {
+    grid-column: 1 / -1;
   }
 
   .about-text {
     text-align: left;
+    margin-bottom: 0;
   }
 
   .work {
@@ -1271,6 +1417,23 @@ html {
 
   .steps {
     grid-template-columns: 1fr;
+  }
+
+  .step {
+    min-height: 0;
+  }
+
+  /* 16px+ stops iPhones zooming in when a field is tapped */
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+}
+
+/* Touch screens: there is no hover, so the hover hints don't apply */
+@media (hover: none) {
+  .works-hint {
+    display: none;
   }
 }
 

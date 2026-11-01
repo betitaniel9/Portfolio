@@ -82,7 +82,11 @@
         <use href="#tri" fill="#fff"/>
       </svg>
     </a>
-    <nav>
+    <!-- Menu button: only shown on small screens -->
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="navMenu">
       <ul class="nav-links">
         <li class="nav-pill" aria-hidden="true"></li>
         <li><a href="#about">About Me</a></li>
@@ -573,6 +577,33 @@
       spy();
     })();
 
+    // Small screens: the menu button opens/closes the nav links as a dropdown
+    (function () {
+      var nav = document.querySelector('.nav');
+      var toggle = document.getElementById('navToggle');
+      if (!toggle) return;
+
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(!nav.classList.contains('is-open'));
+      });
+      // picking a link, tapping outside or pressing Escape closes it
+      nav.querySelectorAll('.nav-links a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+      });
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+
     // Nav gets a lighter background once the page is scrolled
     (function () {
       var nav = document.querySelector('.nav');
@@ -993,7 +1024,9 @@
           el.style.setProperty('--rv', '1');
         });
         items.forEach(function (el, i) {
-          var r = el.getBoundingClientRect();
+          // a display: contents box has no size of its own; time it by its first child
+          var box = getComputedStyle(el).display === 'contents' ? el.firstElementChild : el;
+          var r = box.getBoundingClientRect();
           var top = r.top + window.scrollY;
           var center = top + r.height / 2;
 
