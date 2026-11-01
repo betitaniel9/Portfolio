@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NB Web Portfolio</title>
+  <!-- Browser tab icon + phone home-screen icon -->
+  <link rel="icon" type="image/png" href="images/NG%20Logo@2x.png">
+  <link rel="apple-touch-icon" href="images/NG%20Logo@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&family=Michroma&family=Montserrat:wght@400;500&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body class="is-intro">
+
+  <!-- Fixed animated background: faint lines with lights running along them -->
+  <svg class="bg-lines" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="bg-base">
+      <path d="M0 180 H1000"/>
+      <path d="M0 740 H1000"/>
+      <path d="M240 0 V1000"/>
+      <path d="M790 0 V1000"/>
+      <path d="M-100 1000 L1000 -100"/>
+      <path d="M0 320 L680 1000"/>
+      <path d="M380 0 L1000 620"/>
+    </g>
+    <g class="bg-run">
+      <path pathLength="1000" style="--t:11s; --d:0s"   d="M0 180 H1000"/>
+      <path pathLength="1000" style="--t:14s; --d:-6s" d="M1000 740 H0"/>
+      <path pathLength="1000" style="--t:13s; --d:-3s" d="M240 0 V1000"/>
+      <path pathLength="1000" style="--t:16s; --d:-9s" d="M790 1000 V0"/>
+      <path pathLength="1000" style="--t:15s; --d:-2s" d="M-100 1000 L1000 -100"/>
+      <path pathLength="1000" style="--t:12s; --d:-7s" d="M0 320 L680 1000"/>
+      <path pathLength="1000" style="--t:17s; --d:-11s" d="M1000 620 L380 0"/>
+    </g>
+  </svg>
+  <!-- Fixed drifting particles (drawn by the script) -->
+  <canvas class="bg-particles" id="bgParticles" aria-hidden="true"></canvas>
+
+  <!-- Shared logo shapes (same paths as images/Intro White.svg) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="nb" d="M202 188 L1190 188 A508 418 0 0 1 1557 892 A511 465 0 0 1 1275 1744 L1014 1744 L202 1025 L202 815 L1015 1534 L1265 1534 A276 255 0 0 0 1541 1279 A276 255 0 0 0 1265 1024 L1013 1023 L766 815 L1175 815 A273 208 0 0 0 1448 607 A273 208 0 0 0 1175 399 L431 397 Z"/>
+      <path id="tri" d="M201 1534 L201 1744 L433 1744 Z"/>
+      <g id="shade">
+        <polygon points="202,1025 317,1130 317,1630 202,1534" fill="#242424"/>
+        <polygon points="317,1130 373,1178 373,1685 317,1630" fill="#353535"/>
+      </g>
+      <clipPath id="logoClip">
+        <use href="#nb"/>
+        <use href="#tri"/>
+      </clipPath>
+      <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="0.5" stop-color="#9ec9ff" stop-opacity="0.85"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ===== Intro ===== -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <svg class="intro-logo" id="introLogo" viewBox="0 0 1932 1932">
+      <use href="#shade" class="i-shade"/>
+      <use href="#nb" class="i-fill"/>
+      <use href="#tri" class="i-tri"/>
+      <path class="i-outline" pathLength="1" d="M202 188 L1190 188 A508 418 0 0 1 1557 892 A511 465 0 0 1 1275 1744 L1014 1744 L202 1025 L202 815 L1015 1534 L1265 1534 A276 255 0 0 0 1541 1279 A276 255 0 0 0 1265 1024 L1013 1023 L766 815 L1175 815 A273 208 0 0 0 1448 607 A273 208 0 0 0 1175 399 L431 397 Z"/>
+      <path class="i-outline" pathLength="1" d="M201 1534 L201 1744 L433 1744 Z"/>
+      <g clip-path="url(#logoClip)">
+        <rect class="i-sweep" x="0" y="0" width="500" height="1932" fill="url(#shine)"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav">
+    <a href="#" class="nav-logo" id="navLogo" aria-label="Home">
+      <svg viewBox="0 0 1932 1932">
+        <use href="#shade"/>
+        <use href="#nb" fill="#fff"/>
+        <use href="#tri" fill="#fff"/>
+      </svg>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li class="nav-pill" aria-hidden="true"></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#works">My Works</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#stack">Tech Stack</a></li>
+        <li><a href="#process">My Process</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <main>
+    <section class="hero">
+      <div class="hero-stage">
+        <div class="strip strip-top" data-speed="0.25">
+          <div class="strip-track">
+            <span>UI/UX Designer</span><span>Front End Developer</span><span>Back End Developer</span><span>Mobile App Developer</span>
+            <span>UI/UX Designer</span><span>Front End Developer</span><span>Back End Developer</span><span>Mobile App Developer</span>
+          </div>
+        </div>
+
+        <h1 class="hero-name" data-speed="0.45" aria-label="Niel Betita"><span class="hero-name-track" aria-hidden="true"><span>NIEL BETITA</span><span>NIEL BETITA</span><span>NIEL BETITA</span><span>NIEL BETITA</span></span></h1>
+
+        <img class="hero-photo" src="images/Hero Image.png" alt="Portrait" data-speed="0.12">
+
+        <div class="strip strip-bottom" data-speed="0.12">
+          <div class="strip-track">
+            <span>UI/UX Designer</span><span>Front End Developer</span><span>Back End Developer</span><span>Mobile App Developer</span>
+            <span>UI/UX Designer</span><span>Front End Developer</span><span>Back End Developer</span><span>Mobile App Developer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About Me ===== -->
+    <section class="about" id="about">
+      <div class="about-photo" data-speed="-0.1" data-reveal>
+        <img src="images/About Me image.jfif" alt="Niel working at a desk">
+      </div>
+
+      <div class="about-content" data-speed="0.05" data-reveal="80">
+        <h2 class="about-title">
+          I build things for <span class="outline">web</span>,
+          <span class="outline">mobile</span> and everything behind them.
+        </h2>
+
+        <p class="about-text">
+          I am Niel Francis Benedict J. Betita, a fourth year BSIT student at Batangas State
+          University &ndash; ARASOF Campus. I enjoy building modern and visually appealing websites,
+          mobile applications, and software systems. I can take on Front-End, Back-End, or
+          Full-Stack Development roles depending on the needs of the project or team. I am
+          always eager to learn new technologies, improve my skills, and create practical
+          solutions that deliver a great user experience.
+        </p>
+
+        <dl class="about-facts">
+          <div class="fact">
+            <dt>Studying</dt>
+            <dd>BSIT, BSU ARASOF CAMPUS</dd>
+          </div>
+          <div class="fact">
+            <dt>Building</dt>
+            <dd>ACADOCS</dd>
+          </div>
+          <div class="fact">
+            <dt>Looking for</dt>
+            <dd>Internship &amp; Junior Roles</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== My Works ===== -->
+    <section class="works" id="works">
+      <h2 class="works-title outline" data-speed="0.1" data-reveal>My Works</h2>
+
+      <!-- Replace each href="#" with the project's link -->
+      <ul class="works-list" data-speed="-0.03">
+        <li data-reveal>
+          <a class="work" href="#" target="_blank" rel="noopener" data-preview="images/ACADOCS.png">
+            <span class="work-num outline">01</span>
+            <span class="work-info">
+              <span class="work-name">ACADOCS</span>
+              <span class="work-desc">Integrated Document Management and Performance Monitoring</span>
+              <span class="work-meta">Lead Developer &middot; Capstone / Thesis</span>
+            </span>
+            <img class="work-thumb" src="images/ACADOCS.png" alt="ACADOCS preview" loading="lazy">
+          </a>
+        </li>
+        <li data-reveal>
+          <a class="work" href="#" target="_blank" rel="noopener" data-preview="images/KGRF web.png">
+            <span class="work-num outline">02</span>
+            <span class="work-info">
+              <span class="work-name">Kampfgruppe Filipinas</span>
+              <span class="work-desc">KGRF Official Recruitment and Community website</span>
+              <span class="work-meta">Solo Developer &middot; Client Work</span>
+            </span>
+            <img class="work-thumb" src="images/KGRF web.png" alt="Kampfgruppe Filipinas preview" loading="lazy">
+          </a>
+        </li>
+        <li data-reveal>
+          <a class="work" href="#" target="_blank" rel="noopener" data-preview="images/Reverie.png">
+            <span class="work-num outline">03</span>
+            <span class="work-info">
+              <span class="work-name">REVERIE</span>
+              <span class="work-desc">Online store for REVERIE Watches</span>
+              <span class="work-meta">Solo Developer &middot; Personal Project</span>
+            </span>
+            <img class="work-thumb" src="images/Reverie.png" alt="REVERIE preview" loading="lazy">
+          </a>
+        </li>
+        <li data-reveal>
+          <a class="work" href="#" target="_blank" rel="noopener" data-preview="images/Coffee Tayo.png">
+            <span class="work-num outline">04</span>
+            <span class="work-info">
+              <span class="work-name">Coffee Tayo?</span>
+              <span class="work-desc">A Local Cafe Finder</span>
+              <span class="work-meta">Solo Developer &middot; Personal Project</span>
+            </span>
+            <img class="work-thumb" src="images/Coffee Tayo.png" alt="Coffee Tayo preview" loading="lazy">
+          </a>
+        </li>
+      </ul>
+
+      <p class="works-hint" data-speed="-0.03" data-reveal>Hover a project to preview. Click to open</p>
+
+      <!-- Floating preview that follows the cursor -->
+      <div class="work-preview" id="workPreview" aria-hidden="true">
+        <img src="" alt="">
+      </div>
+    </section>
+
+    <!-- ===== Tech Stack ===== -->
+    <section class="stack" id="stack">
+      <h2 class="section-title outline" data-speed="0.1" data-reveal>Tech Stack</h2>
+
+      <div class="stack-top">
+        <svg class="wheel" viewBox="0 0 400 400" data-speed="-0.12" data-reveal role="group" aria-label="Tech stack wheel">
+          <!-- Each slice holds its own description and tools (items split by |) -->
+          <g class="wheel-spin">
+            <g class="slice" data-key="tools" tabindex="0" role="button" aria-label="Tools and Design"
+               data-desc="What I design, build, test and ship with."
+               data-items="VS Code|Git|XAMPP|Figma|MySQL / phpMyAdmin">
+              <path d="M200 200 L2 200 A198 198 0 0 1 200 2 Z"/>
+              <text x="122" y="141"><tspan x="122">TOOLS</tspan><tspan x="122" dy="15">&amp; DESIGN</tspan></text>
+            </g>
+            <g class="slice" data-key="front" tabindex="0" role="button" aria-label="Front End"
+               data-desc="Interfaces people see and use: responsive, accessible and fast."
+               data-items="HTML|CSS|JavaScript|TypeScript|React|Bootstrap|Tailwind CSS">
+              <path d="M200 200 L200 2 A198 198 0 0 1 398 200 Z"/>
+              <text x="278" y="141"><tspan x="278">FRONT</tspan><tspan x="278" dy="15">END</tspan></text>
+            </g>
+            <g class="slice" data-key="back" tabindex="0" role="button" aria-label="Back End"
+               data-desc="APIs, databases and server logic that keep everything running."
+               data-items="Python|Node.js|PHP|CodeIgniter 4|Java">
+              <path d="M200 200 L398 200 A198 198 0 0 1 200 398 Z"/>
+              <text x="278" y="267"><tspan x="278">BACK</tspan><tspan x="278" dy="15">END</tspan></text>
+            </g>
+            <g class="slice" data-key="mobile" tabindex="0" role="button" aria-label="Mobile Development"
+               data-desc="Cross-platform apps for Android and iOS."
+               data-items="React Native|JavaScript|TypeScript">
+              <path d="M200 200 L200 398 A198 198 0 0 1 2 200 Z"/>
+              <text x="122" y="267"><tspan x="122">MOBILE</tspan><tspan x="122" dy="15">DEV</tspan></text>
+            </g>
+          </g>
+          <circle class="wheel-hub" cx="200" cy="200" r="38"/>
+          <text class="wheel-hub-text" x="200" y="201">B</text>
+        </svg>
+
+        <div class="stack-panel" data-speed="0.08" data-reveal="100">
+          <div class="stack-swap" id="stackSwap">
+            <h3 class="stack-title outline" id="stackTitle">Pick a slice</h3>
+            <p class="stack-desc" id="stackDesc">Hover or click a slice of the wheel to see what is on it.</p>
+            <ul class="stack-chips" id="stackChips"></ul>
+          </div>
+          <p class="stack-hint">Hover or click a slice to stop the wheel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== My Process ===== -->
+    <section class="process" id="process">
+      <h2 class="section-title outline" data-speed="0.1" data-reveal>My Process</h2>
+
+      <!-- Cards + the swirling arrows between them (arrows are drawn by the script) -->
+      <div class="steps-wrap" data-speed="-0.05" data-reveal>
+        <svg class="step-arrows" aria-hidden="true"></svg>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num outline">01</span>
+            <div class="step-text"><h3>Discovery</h3><p>Goals, users, scope.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num outline">02</span>
+            <div class="step-text"><h3>Planning</h3><p>Roadmap, stack, milestones.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num outline">03</span>
+            <div class="step-text"><h3>Design</h3><p>Wireframes and UI.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num outline">04</span>
+            <div class="step-text"><h3>Development</h3><p>Build in small, reviewable steps.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num outline">05</span>
+            <div class="step-text"><h3>Testing</h3><p>QA, performance, fixes.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num outline">06</span>
+            <div class="step-text"><h3>Launch</h3><p>Deploy and support.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== What I Offer ===== -->
+    <section class="services" id="services">
+      <h2 class="section-title outline" data-speed="0.1" data-reveal>What I Offer</h2>
+
+      <div class="service-grid">
+        <article class="service" data-speed="-0.04" data-reveal>
+          <h3>Front End Development</h3>
+          <p>Responsive, fast websites and web interfaces built from your design or idea. I turn layouts into clean pages using React, Tailwind CSS and Bootstrap.</p>
+          <ul class="service-tags"><li>Responsive websites</li><li>Online stores</li><li>Figma to code</li></ul>
+          <a class="service-cta" href="#contact">Let's Talk</a>
+        </article>
+        <article class="service" data-speed="-0.04" data-reveal="80">
+          <h3>Back End Development</h3>
+          <p>The logic behind your site: databases, user accounts, admin panels and APIs. Built with PHP (CodeIgniter 4), Node.js or Python, with MySQL for your data.</p>
+          <ul class="service-tags"><li>REST APIs</li><li>Admin dashboards</li><li>Database design</li></ul>
+          <a class="service-cta" href="#contact">Let's Talk</a>
+        </article>
+        <article class="service" data-speed="-0.04" data-reveal="160">
+          <h3>Mobile App Development</h3>
+          <p>Cross-platform mobile apps for iOS and Android from a single codebase, built with React Native and TypeScript.</p>
+          <ul class="service-tags"><li>Android apps</li><li>UI to working app</li><li>API integration</li></ul>
+          <a class="service-cta" href="#contact">Let's Talk</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="contact" id="contact">
+      <div class="contact-info" data-speed="0.06" data-reveal>
+        <p class="contact-status"><span class="status-dot" aria-hidden="true"></span>Open to internships &amp; junior roles</p>
+        <h2 class="section-title outline contact-title">Let's work<br>together</h2>
+        <!-- Replace these with your real email / profile links -->
+        <!-- data-show = the text shown under the links on hover / click -->
+        <ul class="contact-links" id="contactLinks">
+          <li><a href="mailto:betitaniel9@gmail.com" id="contactEmail" data-show="betitaniel9@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/niel-francis-betita-0a0577310" target="_blank" rel="noopener" data-show="linkedin.com/in/niel-francis-betita-0a0577310">LinkedIn</a></li>
+          <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+        <p class="contact-show" id="contactShow" aria-live="polite"></p>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-speed="-0.04" data-reveal="80" novalidate>
+        <label for="cfName">Name</label>
+        <input id="cfName" name="name" type="text" autocomplete="name" required>
+
+        <label for="cfEmail">Email</label>
+        <input id="cfEmail" name="email" type="email" autocomplete="email" required>
+
+        <label for="cfMessage">Message</label>
+        <textarea id="cfMessage" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+        <p class="form-note" id="formNote" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Background particles: small faint dots drifting slowly upward and twinkling
+    (function () {
+      var canvas = document.getElementById('bgParticles');
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var dots = [];
+      var w, h, dpr;
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function makeDot(anyY) {
+        return {
+          x: rand(0, w),
+          y: anyY ? rand(0, h) : h + 10,  // new dots start just below the screen
+          r: rand(1, 2.6),                // size in px
+          vx: rand(-0.12, 0.12),          // slight sideways drift
+          vy: rand(-0.35, -0.08),         // slowly upward
+          a: rand(0.3, 0.75),             // max brightness
+          tw: rand(0, Math.PI * 2),       // twinkle phase
+          ts: rand(0.008, 0.025)          // twinkle speed
+        };
+      }
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // about one dot per 10,000 px², capped for performance
+        var count = Math.min(180, Math.round((w * h) / 10000));
+        while (dots.length < count) dots.push(makeDot(true));
+        dots.length = count;
+        if (reduceMotion) draw();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < dots.length; i++) {
+          var p = dots[i];
+          var alpha = p.a * (0.55 + 0.45 * Math.sin(p.tw));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(3) + ')';
+          ctx.fill();
+        }
+      }
+
+      function step() {
+        for (var i = 0; i < dots.length; i++) {
+          var p = dots[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.tw += p.ts;
+          if (p.y < -10 || p.x < -10 || p.x > w + 10) dots[i] = makeDot(false);
+        }
+        draw();
+        requestAnimationFrame(step);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      if (!reduceMotion) requestAnimationFrame(step);
+    })();
+
+    // Contact links: hovering, focusing or clicking a link shows its address under
+    // the links. A click keeps it shown after the mouse leaves.
+    (function () {
+      var list = document.getElementById('contactLinks');
+      var show = document.getElementById('contactShow');
+      if (!list || !show) return;
+      var pinned = null;
+
+      function display(a) {
+        if (a && a.dataset.show) {
+          show.textContent = a.dataset.show;
+          show.classList.add('is-visible');
+        } else {
+          show.classList.remove('is-visible');
+        }
+        [].forEach.call(list.querySelectorAll('a'), function (l) {
+          l.classList.toggle('is-shown', l === a && !!a.dataset.show);
+        });
+      }
+
+      [].forEach.call(list.querySelectorAll('a'), function (a) {
+        a.addEventListener('mouseenter', function () { display(a); });
+        a.addEventListener('focus', function () { display(a); });
+        a.addEventListener('click', function () { pinned = a; display(a); });
+      });
+      list.addEventListener('mouseleave', function () { display(pinned); });
+    })();
+
+    // Contact form: there is no server yet, so it opens the visitor's email app
+    // with the message filled in, addressed to the Email link's address.
+    (function () {
+      var form = document.getElementById('contactForm');
+      if (!form) return;
+      var note = document.getElementById('formNote');
+      var to = document.getElementById('contactEmail').getAttribute('href').replace('mailto:', '');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('cfName').value.trim();
+        var email = document.getElementById('cfEmail').value.trim();
+        var message = document.getElementById('cfMessage').value.trim();
+
+        if (!name || !email || !message) {
+          note.textContent = 'Please fill in your name, email and message.';
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          note.textContent = 'Please enter a valid email address.';
+          return;
+        }
+
+        var subject = 'Portfolio message from ' + name;
+        var body = message + '\n\n' + name + '\n' + email;
+        window.location.href = 'mailto:' + to +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+        note.textContent = 'Opening your email app…';
+      });
+    })();
+
+    // Nav links: a white bottom border slides to the hovered link; when not hovering
+    // it sits under the section you're currently scrolled to.
+    (function () {
+      var list = document.querySelector('.nav-links');
+      if (!list) return;
+      var pill = list.querySelector('.nav-pill');
+      var links = [].slice.call(list.querySelectorAll('a'));
+      var sections = links.map(function (a) { return document.querySelector(a.hash); });
+      var nav = document.querySelector('.nav');
+      var active = null;
+      var hovered = null;
+      var lockUntil = 0; // after a click, ignore scroll tracking while it scrolls there
+      var ticking = false;
+
+      function render() {
+        var target = hovered || active;
+        links.forEach(function (a) {
+          a.classList.toggle('is-target', a === target);
+          a.classList.toggle('is-active', a === active);
+          if (a === active) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+        if (!target) {
+          pill.classList.remove('is-visible');
+          return;
+        }
+        // first appearance: jump into place instead of sliding in from the left
+        var jump = !pill.classList.contains('is-visible');
+        if (jump) pill.classList.add('no-anim');
+        // span just the text, not the link's side padding
+        var pad = parseFloat(getComputedStyle(target).paddingLeft) || 0;
+        pill.style.width = (target.offsetWidth - pad * 2) + 'px';
+        pill.style.transform = 'translateX(' + (target.offsetLeft + pad) + 'px)';
+        if (jump) {
+          void pill.offsetWidth;
+          pill.classList.remove('no-anim');
+        }
+        pill.classList.add('is-visible');
+      }
+
+      // Current section = the last one whose top has passed ~30% down the screen
+      function spy() {
+        ticking = false;
+        if (Date.now() < lockUntil) return;
+        var line = (nav ? nav.offsetHeight : 0) + window.innerHeight * 0.3;
+        var current = null;
+        sections.forEach(function (s, i) {
+          if (s && s.getBoundingClientRect().top <= line) current = links[i];
+        });
+        // at the very bottom, the last section counts as current
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+          for (var i = sections.length - 1; i >= 0; i--) {
+            if (sections[i]) { current = links[i]; break; }
+          }
+        }
+        if (current !== active) {
+          active = current;
+          render();
+        }
+      }
+
+      links.forEach(function (a) {
+        a.addEventListener('mouseenter', function () { hovered = a; render(); });
+        a.addEventListener('focus', function () { hovered = a; render(); });
+        a.addEventListener('blur', function () { hovered = null; render(); });
+        a.addEventListener('click', function () {
+          if (!document.querySelector(a.hash)) return; // no section yet (e.g. Skills)
+          active = a;
+          lockUntil = Date.now() + 1200;
+          setTimeout(spy, 1250);
+          render();
+        });
+      });
+      list.addEventListener('mouseleave', function () { hovered = null; render(); });
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(spy);
+        }
+      }, { passive: true });
+      window.addEventListener('resize', render);
+      if (document.fonts) document.fonts.ready.then(render);
+      spy();
+    })();
+
+    // Nav gets a lighter background once the page is scrolled
+    (function () {
+      var nav = document.querySelector('.nav');
+      function update() {
+        nav.classList.toggle('is-scrolled', window.scrollY > 10);
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // My Works: floating preview that follows the cursor (mouse only)
+    (function () {
+      var preview = document.getElementById('workPreview');
+      if (!preview || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      var img = preview.querySelector('img');
+      var x = 0, y = 0, cx = 0, cy = 0, running = false;
+
+      function loop() {
+        // ease toward the cursor for a smooth trailing feel
+        cx += (x - cx) * 0.18;
+        cy += (y - cy) * 0.18;
+        preview.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+        if (running) requestAnimationFrame(loop);
+      }
+
+      document.querySelectorAll('.work').forEach(function (work) {
+        work.addEventListener('mouseenter', function (e) {
+          img.src = work.dataset.preview;
+          if (!running) {
+            cx = x = e.clientX;
+            cy = y = e.clientY;
+            running = true;
+            loop();
+          }
+          preview.classList.add('is-visible');
+        });
+        work.addEventListener('mousemove', function (e) {
+          x = e.clientX;
+          y = e.clientY;
+        });
+        work.addEventListener('mouseleave', function () {
+          preview.classList.remove('is-visible');
+        });
+      });
+
+      document.querySelector('.works-list').addEventListener('mouseleave', function () {
+        running = false;
+      });
+    })();
+
+    // Tech Stack wheel
+    // - On its own: the wheel spins clockwise and whichever slice is facing
+    //   the text (pointing right) is the selected one.
+    // - Hover/focus a slice: the wheel stops and that slice is shown.
+    // - Click a slice: it stays selected (click again to release and resume).
+    (function () {
+      var wheel = document.querySelector('.wheel');
+      if (!wheel) return;
+
+      var slices = [].slice.call(wheel.querySelectorAll('.slice'));
+      var swap = document.getElementById('stackSwap');
+      var title = document.getElementById('stackTitle');
+      var desc = document.getElementById('stackDesc');
+      var chips = document.getElementById('stackChips');
+
+      var spin = wheel.querySelector('.wheel-spin');
+      var TURN_TIME = 20000;   // ms for one full turn (each slice faces right for 1/4 of it)
+      var START_DELAY = 1500;  // "Pick a slice" shows this long before the wheel starts
+      // Center angle of each slice before rotating (degrees, clockwise from 3 o'clock)
+      var BASE = { front: 315, back: 45, mobile: 135, tools: 225 };
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var locked = null;
+      var hovering = false;
+      var inView = false;
+      var started = false;
+      var angle = 0;
+      var last = null;
+      var raf = null;
+      var current;
+
+      // Labels counter-rotate around their own centers so they stay upright
+      var labels;
+      function measureLabels() {
+        labels = slices.map(function (s) {
+          var text = s.querySelector('text');
+          text.removeAttribute('transform');
+          var box = text.getBBox();
+          return { text: text, cx: box.x + box.width / 2, cy: box.y + box.height / 2 };
+        });
+      }
+      measureLabels();
+      if (document.fonts) {
+        document.fonts.ready.then(function () { measureLabels(); applyAngle(); });
+      }
+
+      function sliceFor(key) {
+        return wheel.querySelector('.slice[data-key="' + key + '"]');
+      }
+
+      function show(key, fromUser) {
+        slices.forEach(function (s) {
+          s.classList.toggle('is-active', s.dataset.key === key);
+          s.setAttribute('aria-pressed', s.dataset.key === locked ? 'true' : 'false');
+        });
+        if (key === current) return;
+        current = key;
+
+        // only announce changes the visitor caused, not the auto-cycle
+        swap.setAttribute('aria-live', fromUser ? 'polite' : 'off');
+
+        var slice = sliceFor(key);
+        title.textContent = [].map.call(slice.querySelectorAll('tspan'), function (t) {
+          return t.textContent; // e.g. "MOBILE DEV"
+        }).join(' ');
+        desc.textContent = slice.dataset.desc;
+        chips.innerHTML = '';
+        slice.dataset.items.split('|').forEach(function (item) {
+          var chip = document.createElement('li');
+          chip.textContent = item;
+          chips.appendChild(chip);
+        });
+
+        // replay the fade-in
+        swap.classList.remove('is-swapping');
+        void swap.offsetWidth;
+        swap.classList.add('is-swapping');
+      }
+
+      function applyAngle() {
+        spin.setAttribute('transform', 'rotate(' + angle + ' 200 200)');
+        labels.forEach(function (l) {
+          l.text.setAttribute('transform', 'rotate(' + (-angle) + ' ' + l.cx + ' ' + l.cy + ')');
+        });
+      }
+
+      // The slice whose center is within 45° of 3 o'clock (facing the text)
+      function facing() {
+        for (var key in BASE) {
+          var d = ((BASE[key] + angle) % 360 + 540) % 360 - 180;
+          if (d >= -45 && d < 45) return key;
+        }
+      }
+
+      function frame(t) {
+        if (last !== null) angle = (angle + (t - last) * 360 / TURN_TIME) % 360;
+        last = t;
+        applyAngle();
+        show(facing(), false);
+        raf = requestAnimationFrame(frame);
+      }
+
+      // Spin only when on screen and nobody is hovering or has a slice locked
+      function update() {
+        var run = started && inView && !hovering && !locked && !reduceMotion;
+        if (run && !raf) {
+          last = null;
+          raf = requestAnimationFrame(frame);
+        } else if (!run && raf) {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      }
+
+      function pick(key) {
+        hovering = true;
+        update();
+        show(key, true);
+      }
+
+      function release() {
+        hovering = false;
+        if (locked) show(locked, true);
+        update();
+      }
+
+      function toggleLock(key) {
+        locked = locked === key ? null : key;
+        if (!locked) hovering = false; // releasing lets the wheel spin again
+        show(key, true);
+        update();
+      }
+
+      slices.forEach(function (s) {
+        var key = s.dataset.key;
+        s.addEventListener('mouseenter', function () { pick(key); });
+        s.addEventListener('focus', function () { pick(key); });
+        s.addEventListener('blur', release);
+        s.addEventListener('click', function () { toggleLock(key); });
+        s.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleLock(key);
+          }
+        });
+      });
+      wheel.addEventListener('mouseleave', release);
+
+      // Only spin while the wheel is on screen
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          inView = entries[0].isIntersecting;
+          if (inView && !started) {
+            setTimeout(function () { started = true; update(); }, START_DELAY);
+          }
+          update();
+        }, { threshold: 0.3 }).observe(wheel);
+      }
+    })();
+
+    // My Process: cards light up one by one, and a swirling arrow draws
+    // itself from each card to the next. Then it loops.
+    (function () {
+      var section = document.querySelector('.process');
+      if (!section) return;
+
+      var wrap = section.querySelector('.steps-wrap');
+      var svg = section.querySelector('.step-arrows');
+      var steps = [].slice.call(section.querySelectorAll('.step'));
+      var NS = 'http://www.w3.org/2000/svg';
+      var STEP_TIME = 1300; // ms for one arrow to draw
+      var HOLD_TIME = 2200; // ms everything stays lit before restarting
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      section.style.setProperty('--step-time', STEP_TIME + 'ms');
+
+      var arrows = []; // { line, head, length }
+
+      function add(v, w, k) { return { x: v.x + w.x * k, y: v.y + w.y * k }; }
+      function pt(p) { return p.x.toFixed(1) + ' ' + p.y.toFixed(1); }
+      function unit(x, y) { var l = Math.hypot(x, y) || 1; return { x: x / l, y: y / l }; }
+
+      // Curve segments from A to B with a small loop (curl) in the middle.
+      // Returns path commands without the starting "M".
+      function swirl(A, B, exitDir, enterDir) {
+        var dir = unit(B.x - A.x, B.y - A.y);
+        var n = { x: dir.y, y: -dir.x }; // perpendicular: loop curls to this side
+        var s = 13; // loop size
+        var M = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+        var P = add(M, dir, -s);
+        var Q = add(M, dir, s);
+        // crossing control points make the cubic loop over itself
+        var c1 = add(add(P, dir, 4 * s), n, 3.2 * s);
+        var c2 = add(add(Q, dir, -4 * s), n, 3.2 * s);
+        var inTan = unit(c1.x - P.x, c1.y - P.y);
+        var outTan = unit(Q.x - c2.x, Q.y - c2.y);
+        var k1 = Math.hypot(P.x - A.x, P.y - A.y) * 0.45;
+        var k2 = Math.hypot(B.x - Q.x, B.y - Q.y) * 0.45;
+        return ' C ' + pt(add(A, exitDir, k1)) + ', ' + pt(add(P, inTan, -k1)) + ', ' + pt(P) +
+          ' C ' + pt(c1) + ', ' + pt(c2) + ', ' + pt(Q) +
+          ' C ' + pt(add(Q, outTan, k2)) + ', ' + pt(add(B, enterDir, -k2)) + ', ' + pt(B);
+      }
+
+      function build() {
+        svg.innerHTML = '';
+        arrows = [];
+        svg.setAttribute('viewBox', '0 0 ' + wrap.offsetWidth + ' ' + wrap.offsetHeight);
+        var gap = 10; // space between arrow ends and the cards
+
+        for (var i = 0; i < steps.length - 1; i++) {
+          var a = steps[i], b = steps[i + 1];
+          var A, B, d, angle;
+          if (Math.abs(a.offsetTop - b.offsetTop) < 10) {
+            // same row: right side of a -> left side of b
+            A = { x: a.offsetLeft + a.offsetWidth + gap, y: a.offsetTop + a.offsetHeight / 2 };
+            B = { x: b.offsetLeft - gap, y: b.offsetTop + b.offsetHeight / 2 };
+            var right = { x: 1, y: 0 };
+            d = 'M ' + pt(A) + swirl(A, B, right, right);
+            angle = 0;
+          } else {
+            // next row: down out of a, across the gap between rows (with the loop),
+            // then down into b, so it never crosses over other cards
+            A = { x: a.offsetLeft + a.offsetWidth / 2, y: a.offsetTop + a.offsetHeight + gap };
+            B = { x: b.offsetLeft + b.offsetWidth / 2, y: b.offsetTop - gap };
+            var midY = (A.y + B.y) / 2;
+            var r = midY - A.y; // corner radius
+            if (Math.abs(B.x - A.x) < 2 * r + 60) {
+              // cards stacked (one column): straight down with a loop
+              var down = { x: 0, y: 1 };
+              d = 'M ' + pt(A) + swirl(A, B, down, down);
+            } else {
+              var h = B.x < A.x ? -1 : 1;
+              var P1 = { x: A.x + h * r, y: midY };
+              var P2 = { x: B.x - h * r, y: midY };
+              var across = { x: h, y: 0 };
+              d = 'M ' + pt(A) +
+                ' Q ' + pt({ x: A.x, y: midY }) + ', ' + pt(P1) +
+                swirl(P1, P2, across, across) +
+                ' Q ' + pt({ x: B.x, y: midY }) + ', ' + pt(B);
+            }
+            angle = 90;
+          }
+          var shape = { d: d, angle: angle };
+
+          var guide = document.createElementNS(NS, 'path');
+          guide.setAttribute('d', shape.d);
+          guide.setAttribute('class', 'arrow-guide');
+          svg.appendChild(guide);
+
+          var line = document.createElementNS(NS, 'path');
+          line.setAttribute('d', shape.d);
+          line.setAttribute('class', 'arrow-line');
+          svg.appendChild(line);
+          var length = line.getTotalLength();
+          line.style.strokeDasharray = length;
+          line.style.strokeDashoffset = length;
+
+          var head = document.createElementNS(NS, 'path');
+          head.setAttribute('d', 'M -10 -6 L 0 0 L -10 6');
+          head.setAttribute('class', 'arrow-head');
+          head.setAttribute('transform', 'translate(' + pt(B) + ') rotate(' + shape.angle + ')');
+          svg.appendChild(head);
+
+          arrows.push({ line: line, head: head, length: length });
+        }
+        render(true);
+      }
+
+      var i = -1;     // index of the newest lit card
+      var timer = null;
+
+      // Light cards up to i; arrows before i are drawn, arrow i (to the next card) draws now
+      function render(instant) {
+        steps.forEach(function (s, k) {
+          s.classList.toggle('is-lit', k <= i);
+          s.classList.toggle('is-current', k === i);
+        });
+        arrows.forEach(function (ar, k) {
+          var drawn = k <= i;
+          var animate = !instant && k === i;
+          ar.line.style.transition = animate ? 'stroke-dashoffset var(--step-time) ease-in-out' : 'none';
+          ar.line.style.strokeDashoffset = drawn ? 0 : ar.length;
+          ar.head.classList.toggle('is-shown', drawn);
+          ar.head.style.transitionDelay = animate ? 'calc(var(--step-time) * 0.85)' : '0s';
+        });
+      }
+
+      function tick() {
+        i++;
+        render(false);
+        if (i < steps.length - 1) {
+          timer = setTimeout(tick, STEP_TIME);
+        } else {
+          // last card lit: hold, then clear and start again
+          timer = setTimeout(function () {
+            i = -1;
+            render(true);
+            timer = setTimeout(tick, 600);
+          }, HOLD_TIME);
+        }
+      }
+
+      build();
+      window.addEventListener('resize', build);
+      window.addEventListener('load', build);
+      if (document.fonts) document.fonts.ready.then(build);
+
+      // Reduced motion: show everything complete, no animation
+      if (reduceMotion) {
+        i = steps.length - 1;
+        render(true);
+        return;
+      }
+
+      // Only run while the section is on screen
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            if (!timer) tick();
+          } else {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }, { threshold: 0.35 }).observe(section);
+      }
+    })();
+
+    // Scroll effects, both driven directly by the scroll position:
+    //
+    // 1. Parallax (data-speed): the element moves at a different rate than the scroll.
+    //    Positive = slower (drifts down), negative = faster (drifts up).
+    //    Elements in the first screen start at 0; the rest are at 0 when centered in view.
+    //
+    // 2. Reveal (data-reveal): plays as the element enters from the bottom and in
+    //    reverse as it leaves at the top, finishing before it reaches the nav bar.
+    //    Where it sits on screen decides the motion (worked out automatically):
+    //      left side  -> slides out to the left (and in from the left)
+    //      right side -> slides out to the right (and in from the right)
+    //      centered   -> shrinks
+    //    It moves first and only fades near the end. The value is an extra offset in
+    //    px, so cards in a row can come in one after another (0, 80, 160...).
+    //
+    // Values ease toward their target each frame, so it stays smooth even with
+    // jumpy mouse-wheel scrolling.
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var items = [].slice.call(document.querySelectorAll('[data-speed], [data-reveal]'));
+      if (!items.length) return;
+
+      var nav = document.querySelector('.nav');
+      var info = [];
+      var vh = window.innerHeight;
+      var navH = 0;
+      var running = false;
+      var EASE = 0.08; // 0-1: lower = smoother, more delayed catch-up
+
+      function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+      function smooth(t) { return t * t * (3 - 2 * t); }
+
+      // Record each element's position on the page with the effects removed
+      function measure() {
+        vh = window.innerHeight;
+        navH = nav ? nav.offsetHeight : 0;
+        var vw = document.documentElement.clientWidth;
+        items.forEach(function (el) {
+          el.style.setProperty('--py', '0px');
+          el.style.setProperty('--rv', '1');
+        });
+        items.forEach(function (el, i) {
+          var r = el.getBoundingClientRect();
+          var top = r.top + window.scrollY;
+          var center = top + r.height / 2;
+
+          // which way it moves, from where it sits horizontally
+          if (el.hasAttribute('data-reveal')) {
+            var cx = (r.left + r.width / 2) / vw;
+            el.dataset.dir = cx < 0.42 ? 'left' : cx > 0.58 ? 'right' : 'center';
+          }
+
+          var prev = info[i];
+          info[i] = {
+            speed: el.dataset.speed ? parseFloat(el.dataset.speed) : 0,
+            anchor: center < vh ? 0 : center - vh / 2,
+            reveal: el.hasAttribute('data-reveal'),
+            offset: parseFloat(el.dataset.reveal) || 0,
+            top: top,
+            height: r.height,
+            py: prev ? prev.py : null,
+            rv: prev ? prev.rv : null
+          };
+        });
+        start();
+      }
+
+      function targets(d, y) {
+        var t = { py: 0, rv: 1 };
+        if (d.speed) t.py = (y - d.anchor) * d.speed;
+        if (d.reveal) {
+          var zone = vh * 0.35;                    // scrolling it takes to come in / go out
+          var top = d.top - y;                     // where it sits on screen
+          // Tall blocks start leaving once their top part reaches the nav,
+          // short ones once their bottom does
+          var edge = top + Math.min(d.height, vh * 0.35);
+          var enter = clamp01((vh - top - d.offset) / zone); // 0 below the screen -> 1 once in
+          var leave = clamp01((edge - navH) / zone);         // 1 on screen -> 0 at the nav bar
+          t.rv = smooth(Math.min(enter, leave));
+        }
+        return t;
+      }
+
+      function frame() {
+        var y = window.scrollY;
+        var moving = false;
+        items.forEach(function (el, i) {
+          var d = info[i];
+          var t = targets(d, y);
+          if (d.py === null) { d.py = t.py; d.rv = t.rv; } // first frame: no easing
+          d.py += (t.py - d.py) * EASE;
+          d.rv += (t.rv - d.rv) * EASE;
+          if (Math.abs(t.py - d.py) > 0.1 || Math.abs(t.rv - d.rv) > 0.002) {
+            moving = true;
+          } else {
+            d.py = t.py;
+            d.rv = t.rv;
+          }
+          el.style.setProperty('--py', d.py.toFixed(1) + 'px');
+          el.style.setProperty('--rv', d.rv.toFixed(3));
+        });
+        if (moving) {
+          requestAnimationFrame(frame);
+        } else {
+          running = false;
+        }
+      }
+
+      function start() {
+        if (!running) {
+          running = true;
+          requestAnimationFrame(frame);
+        }
+      }
+
+      window.addEventListener('scroll', start, { passive: true });
+      window.addEventListener('resize', measure);
+      window.addEventListener('load', measure);
+      measure();
+    })();
+
+    (function () {
+      var body = document.body;
+      var intro = document.getElementById('intro');
+      var introLogo = document.getElementById('introLogo');
+      var navLogo = document.getElementById('navLogo');
+
+      function finish() {
+        body.classList.remove('is-intro');
+        body.classList.add('is-loaded');
+        intro.remove();
+      }
+
+      // Skip the intro for people who prefer reduced motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        finish();
+        return;
+      }
+
+      var DRAW_TIME = 3600;  // logo animation length (matches CSS)
+      var MOVE_TIME = 900;   // slide to the nav corner
+
+      setTimeout(function () {
+        // Slide + shrink the intro logo onto the nav logo
+        var from = introLogo.getBoundingClientRect();
+        var to = navLogo.getBoundingClientRect();
+        var scale = to.width / from.width;
+        var dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+        var dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+
+        introLogo.style.transition = 'transform ' + MOVE_TIME + 'ms cubic-bezier(.7,0,.2,1)';
+        introLogo.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+        body.classList.add('is-revealing'); // fades the black overlay + shows the page
+
+        setTimeout(finish, MOVE_TIME);
+      }, DRAW_TIME);
+    })();
+  </script>
+</body>
+</html>

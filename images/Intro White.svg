@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1932 1932" width="1932" height="1932">
+  <defs>
+    <path id="nb" d="M202 188 L1190 188 A508 418 0 0 1 1557 892 A511 465 0 0 1 1275 1744 L1014 1744 L202 1025 L202 815 L1015 1534 L1265 1534 A276 255 0 0 0 1541 1279 A276 255 0 0 0 1265 1024 L1013 1023 L766 815 L1175 815 A273 208 0 0 0 1448 607 A273 208 0 0 0 1175 399 L431 397 Z"/>
+    <path id="tri" d="M201 1534 L201 1744 L433 1744 Z"/>
+    <clipPath id="logoClip">
+      <use href="#nb"/>
+      <use href="#tri"/>
+    </clipPath>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#9ec9ff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .outline { fill: none; stroke: #fff; stroke-width: 8; stroke-linejoin: round;
+               stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 5s ease-in-out infinite; }
+    .fill { fill: #fff; opacity: 0; animation: fillIn 5s ease-in-out infinite; }
+    .tri { fill: #fff; opacity: 0; transform-box: fill-box; transform-origin: left bottom;
+           animation: triIn 5s cubic-bezier(.2,.9,.3,1.3) infinite; }
+    .shade { opacity: 0; animation: shadeIn 5s ease-in-out infinite; }
+    .sweep { animation: sweep 5s ease-in-out infinite; }
+
+    @keyframes draw {
+      0%   { stroke-dashoffset: 1; opacity: 1; }
+      35%  { stroke-dashoffset: 0; opacity: 1; }
+      55%  { stroke-dashoffset: 0; opacity: 1; }
+      62%, 100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+    @keyframes fillIn {
+      0%, 30% { opacity: 0; }
+      50%, 90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes triIn {
+      0%, 38% { opacity: 0; transform: scale(0); }
+      52%, 90% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+    @keyframes shadeIn {
+      0%, 48% { opacity: 0; }
+      60%, 90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes sweep {
+      0%, 58% { transform: translateX(-900px); }
+      78%, 100% { transform: translateX(2400px); }
+    }
+  </style>
+
+  <!-- shadow on the N stem -->
+  <g class="shade">
+    <polygon points="202,1025 317,1130 317,1630 202,1534" fill="#242424"/>
+    <polygon points="317,1130 373,1178 373,1685 317,1630" fill="#353535"/>
+  </g>
+
+  <!-- solid shapes -->
+  <use href="#nb" class="fill"/>
+  <use href="#tri" class="tri"/>
+
+  <!-- line drawing -->
+  <path class="outline" pathLength="1" d="M202 188 L1190 188 A508 418 0 0 1 1557 892 A511 465 0 0 1 1275 1744 L1014 1744 L202 1025 L202 815 L1015 1534 L1265 1534 A276 255 0 0 0 1541 1279 A276 255 0 0 0 1265 1024 L1013 1023 L766 815 L1175 815 A273 208 0 0 0 1448 607 A273 208 0 0 0 1175 399 L431 397 Z"/>
+  <path class="outline" pathLength="1" d="M201 1534 L201 1744 L433 1744 Z"/>
+
+  <!-- light sweep -->
+  <g clip-path="url(#logoClip)">
+    <rect class="sweep" x="0" y="0" width="500" height="1932" fill="url(#shine)" transform-origin="0 0"/>
+  </g>
+</svg>
